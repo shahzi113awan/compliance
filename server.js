@@ -7,8 +7,8 @@ dotenv.config();
 const ci = require("./routes/api/CI");
 const cti = require("./routes/api/CTI");
 const cl = require("./routes/api/CL");
-const kyc = require("./routes/api/kyc");
-const kyb = require("./routes/api/kyb");
+const kyc = require("./routes/api/KYC");
+const kyb = require("./routes/api/KYB");
 const sd = require("./routes/api/supportingDoc");
 const uploadRoute = require("./routes/api/uploadRoutes");
 
@@ -38,7 +38,7 @@ app.use("/api/upload", express.static(path.join(__dirname, "/uploads")));
 if (process.env.NODE_ENV === "Production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
   app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname, "client","build","index.html" ))
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
   );
 }
 console.log(process.env.NODE_ENV);

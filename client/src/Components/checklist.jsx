@@ -5,9 +5,11 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import ChecklistR from "./CheckList/checklistR";
 import { useDispatch, useSelector } from "react-redux";
 import { Create, GetOne } from "../actions/clAction";
+import { Get } from "../actions/ciAction";
 import axios from "axios";
 export const CheckList = () => {
   const dispatch = useDispatch();
+   
   const history = useHistory();
   const data = useSelector((state) => state.clReducer.state);
   const id = useSelector((state) => state.ciReducer.id);
@@ -132,6 +134,7 @@ export const CheckList = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     urlid ? dispatch(Create(CL, urlid)) : dispatch(Create(CL, id));
+    dispatch(Get());
     history.push("/");
   };
   // console.log(CL);

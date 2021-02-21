@@ -9,16 +9,38 @@ import {
   NavLink,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import logo from "../assets/images/pp.jpg";
+// import { load } from "dotenv/types";
+import { Get } from "../actions/ciAction";
 
 export const Header = (props) => {
+  const dispatch = useDispatch();
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
-
+  const loadData = (e) => {
+    console.log("loading daata");
+    dispatch(Get());
+  };
   return (
-    <div  className='container'>
+    <div className="container">
       <Navbar color="light" light expand="md">
-        <NavLink active tag={Link} to="/">
+        <NavbarBrand>
+          <a style={{ textDecoration: "none" }} href="#">
+            VistaScale
+            <img src={logo} style={{ width: 30, margin: -7, marginLeft: 10 }} />
+          </a>
+        </NavbarBrand>
+        <NavLink
+       
+          onClick={(e) => {
+            loadData(e);
+          }}
+          tag={Link}
+          to="/"
+        >
           ONBOARD
         </NavLink>
         <NavbarToggler onClick={toggle} />

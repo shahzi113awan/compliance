@@ -15,7 +15,9 @@ export default function MainDashboard() {
   const data = useSelector((state) => state.ciReducer.state);
   // const isLoading = 'useSelector((state) => state.ciReducer.isLoading)'
   const isLoading = useSelector((state) => state.ciReducer.isLoading);
-
+  if (!data) {
+    window.location.reload();
+  }
   console.log(isLoading);
   console.log(data);
   return isLoading ? (
